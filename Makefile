@@ -3,13 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aglampor <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/27 15:05:19 by aglampor          #+#    #+#              #
-#    Updated: 2024/08/22 18:16:10 by aglampor         ###   ########.fr        #
+#    Updated: 2024/08/22 19:59:12 by acoste           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-NAME = minishell
+
 
 CC = cc
 
@@ -32,7 +32,7 @@ $(NAME): $(LIBFT) $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LDFLAGS)
 
 $(LIBFT):
-	$(MAKE) -C libft
+	@$(MAKE) -C libft
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@

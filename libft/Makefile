@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aglampor <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/15 16:14:28 by aglampor          #+#    #+#              #
-#    Updated: 2023/10/16 12:55:19 by aglampor         ###   ########.fr        #
+#    Updated: 2024/08/22 19:59:01 by acoste           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,17 +31,17 @@ BONUS_OBJS = $(BONUS:.c=.o)
 
 
 $(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
+	@ar rc $(NAME) $(OBJ)
 
 all: $(NAME)
 
 clean:
-	$(RM) $(OBJ) $(BONUS_OBJS)
+	@$(RM) $(OBJ) $(BONUS_OBJS)
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re: fclean all
 
 bonus : $(OBJ) $(BONUS_OBJS)
-	ar rc $(NAME) $(OBJ) $(BONUS_OBJS)
+	@ar rc $(NAME) $(OBJ) $(BONUS_OBJS)

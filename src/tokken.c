@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   tokken.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aglampor <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 17:16:34 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/22 19:09:32 by aglampor         ###   ########.fr       */
+/*   Updated: 2024/08/22 19:59:36 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 static void	ft_addb_tok(t_token **p, t_token *new)
 {
 	t_token	*temp;
