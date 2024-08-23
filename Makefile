@@ -6,12 +6,12 @@
 #    By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/27 15:05:19 by aglampor          #+#    #+#              #
-#    Updated: 2024/08/22 19:59:12 by acoste           ###   ########.fr        #
+#    Updated: 2024/08/23 16:25:09 by acoste           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-CC = cc
+CC = gcc
 
 CFLAGS = -Wall -Werror -Wextra -g
 
