@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   build_ft.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
+/*   By: aglampor <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:59:27 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/23 16:15:48 by acoste           ###   ########.fr       */
+/*   Updated: 2023/11/07 17:13:14 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "minishell.h"
 
 void	ft_lstadd_back(t_env **lst, t_env *new)
@@ -25,7 +24,7 @@ void	ft_lstadd_back(t_env **lst, t_env *new)
 	}
 }
 
-t_env	*ft_lstnew(char *key, char *value)
+t_env	*ft_lstnew(char *key,char *value)
 {
 	t_env	*l;
 
@@ -65,7 +64,7 @@ void	ft_delnode_key(t_env **lst, char *key )
 		temp = temp->next;
 	}
 	if (!temp)
-		return ;
+		return;
 	if (!flag)
 		*lst = (*lst)->next;
 	else if (temp->next)

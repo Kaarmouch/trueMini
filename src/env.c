@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
+/*   By: aglampor <aglampor@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 15:38:59 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/23 16:16:23 by acoste           ###   ########.fr       */
+/*   Updated: 2024/08/07 19:45:57 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	free_env(t_env	*p)
 {
 	t_env	*tmp;
-
+	
 	while (p)
 	{
 		tmp = p->next;
