@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aglampor <aglampor@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 15:38:59 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/22 17:35:48 by aglampor         ###   ########.fr       */
+/*   Updated: 2024/08/23 16:24:13 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "minishell.h"
-#include <stdio.h>
 
 static void	minishell(t_env *env)
 {
@@ -23,8 +23,8 @@ static void	minishell(t_env *env)
 	while (run)
 	{
 		toks = NULL;
-		line = readline("MY_nishell : ");
-		build_tokens(line ,&toks);
+		line = readline("MY_minishell : ");
+		build_tokens(line, &toks);
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_ws.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aglampor <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 19:51:30 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/22 18:40:29 by aglampor         ###   ########.fr       */
+/*   Updated: 2024/08/23 16:24:34 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,3 @@ char	**splt_white(char *s)
 	split[j] = 0;
 	return (split);
 }
-
