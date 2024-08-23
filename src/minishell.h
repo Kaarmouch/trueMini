@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 15:38:59 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/22 20:04:49 by acoste           ###   ########.fr       */
+/*   Updated: 2024/08/23 17:45:08 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <readline/history.h>
 # include <stdlib.h>
 # include <signal.h>
+//# include "libft/libft.h"
 
 //token
 typedef struct	s_token
@@ -72,6 +73,8 @@ char	*word_dup(char *str, int start, int finish);
 //utils
 int		ft_cmp(char *o, char *t);
 char	*ft_strdup(char *str);
+int		ft_verif_line(char *line);
+int		is_empty_line(char *line);
 
 
 //utils2

@@ -6,12 +6,12 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 22:13:05 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/23 16:18:33 by acoste           ###   ########.fr       */
+/*   Updated: 2024/08/23 17:33:48 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
+/*
 void	m_exit(int code, char *val)
 {
 	if (code == 1)
@@ -29,3 +29,4 @@ void	m_exit(int code, char *val)
 	if (code == 127)
 		write(2, ": command not found", 19);
 }
+*/

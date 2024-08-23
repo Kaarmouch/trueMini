@@ -6,21 +6,28 @@
 #    By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/27 15:05:19 by aglampor          #+#    #+#              #
-#    Updated: 2024/08/23 16:25:09 by acoste           ###   ########.fr        #
+#    Updated: 2024/08/23 18:03:21 by acoste           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -g -Wall -Werror -Wextra
 
-LDFLAGS = -lreadline -Llibft -lft
+NAME	= minishell
+
+LDFLAGS = -lreadline -Llibft #-lft
 
 SRC_DIR = src/
 
-SRC_FILES = build_ft.c env.c minishell.c utils.c split_ws.c ft_split.c\
-	    tokken.c
+SRC_FILES = build_ft.c\
+			env.c\
+			exit.c\
+			ft_split.c\
+			split_ws.c\
+			minishell.c\
+			tokken.c\
+			utils.c
 
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 
@@ -28,23 +35,27 @@ OBJ = $(SRC:.c=.o)
 
 LIBFT = libft/libft.a
 
-$(NAME): $(LIBFT) $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LDFLAGS)
+GREEN = \033[92m
+RESET = \033[0m
+
+$(NAME): $(OBJ) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME) $(LDFLAGS)
 
 $(LIBFT):
-	@$(MAKE) -C libft
+	@$(MAKE) -sC libft
+	@echo	"$(GREEN) Libft Compiled $(RESET)"
 
-%.o: %.c
+$(SRC_DIR)%.o: $(SRC_DIR)%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(NAME)
 
 clean:
 	rm -f $(OBJ)
-	$(MAKE) -C libft clean
+	@$(MAKE) -sC libft clean
 
 fclean: clean
 	rm -f $(NAME)
-	$(MAKE) -C libft fclean
+	@$(MAKE) -sC libft fclean
 
 re: fclean all

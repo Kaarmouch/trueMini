@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 17:16:34 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/23 16:27:51 by acoste           ###   ########.fr       */
+/*   Updated: 2024/08/23 17:41:38 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,9 @@ static int	end_tok(char *s)
 
 static int	bt_u(char *l, t_token **t)
 {
-	int		i;
 	int		j;
 	t_token	*new;
 
-	i = 0;
 	new = (t_token *)malloc(sizeof(t_token));
 	if (!new)
 		return (-1);
@@ -85,6 +83,8 @@ void	build_tokens(char *line, t_token **t)
 	int	i;
 
 	i = 0;
+	if (ft_verif_line(line) == 1)
+			return ;
 	while (line[i] && i < ft_strlen(line))
 	{
 		while (is_white(line[i]))
