@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aglampor <aglampor@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 15:38:59 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/22 20:09:55 by aglampor         ###   ########.fr       */
+/*   Updated: 2024/08/23 19:43:25 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "minishell.h"
-#include <stdio.h>
 
+#include "minishell.h"
+/*
+void	redirect_signals(void)
+{
+	signal(SIGINT, )
+}
+*/
 static void	minishell(t_env *env)
 {
 	char	*line;
@@ -23,9 +28,12 @@ static void	minishell(t_env *env)
 	while (run)
 	{
 		toks = NULL;
-		line = readline("MY_nishell : ");
-		build_tokens(line ,&toks, env);
+		line = readline("MY_minishell : ");
+		if (line || !is_empty_line(line))
+			add_history(line);
+		build_tokens(line, &toks, env);
 	}
+	clear_history();
 }
 
 int	main(int ac, char **av, char **ev)
@@ -36,6 +44,7 @@ int	main(int ac, char **av, char **ev)
 	(void)av;
 	env = NULL;
 	init_env(&env, ev);
+	//redirect_signals(); // TODO alexis
 	minishell(env);
 	free_env(env);
 	return (0);

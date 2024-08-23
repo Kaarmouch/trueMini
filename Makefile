@@ -3,48 +3,49 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aglampor <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/27 15:05:19 by aglampor          #+#    #+#              #
-#    Updated: 2024/08/23 17:53:10 by aglampor         ###   ########.fr        #
+#    Updated: 2024/08/23 19:50:46 by acoste           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-NAME = minishell
 
-CC = cc
+CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -g -Wall -Werror -Wextra
 
-LDFLAGS = -lreadline -Llibft -lft
+NAME	= minishell
+
+LDFLAGS = -lreadline #-lft
 
 SRC_DIR = src/
 
-SRC_FILES = build_ft.c env.c minishell.c utils.c split_ws.c ft_split.c\
-	    tokken.c tjoin.c
+SRC_FILES = build_ft.c\
+			env.c\
+			exit.c\
+			ft_split.c\
+			split_ws.c\
+			minishell.c\
+			tokken.c\
+			utils.c\
+			triple_join.c
 
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 
 OBJ = $(SRC:.c=.o)
 
-LIBFT = libft/libft.a
-
-$(NAME): $(LIBFT) $(OBJ)
+$(NAME): $(OBJ) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LDFLAGS)
 
-$(LIBFT):
-	$(MAKE) -C libft
-
-%.o: %.c
+$(SRC_DIR)%.o: $(SRC_DIR)%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(NAME)
 
 clean:
 	rm -f $(OBJ)
-	$(MAKE) -C libft clean
 
 fclean: clean
 	rm -f $(NAME)
-	$(MAKE) -C libft fclean
 
 re: fclean all
