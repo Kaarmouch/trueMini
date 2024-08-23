@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 15:38:59 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/23 19:43:01 by acoste           ###   ########.fr       */
+/*   Updated: 2024/08/23 21:22:36 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <signal.h>
 # include <fcntl.h>
+# include <sys/wait.h>
 
 # define OPTION 1
 # define DIRECTORY 2
@@ -75,6 +76,7 @@ char	*ft_strjoin_t(char *strt, char *mid, char *end);
 void	ft_strcpy(char *str, char *dest);
 
 //minishell
+char	*print_line(void);
 
 //split_ws
 char	**splt_white(char *s);
@@ -90,4 +92,8 @@ int		is_redir(char *s);
 int		is_builtin(char *s);
 int		is_cmd(char *s, t_env *env);
 
+//signals
+void	sigquit_handler(int signal);
+void	sigint_handler(int signal);
+void	redirect_signals(void);
 #endif

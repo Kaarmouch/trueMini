@@ -6,7 +6,7 @@
 #    By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/27 15:05:19 by aglampor          #+#    #+#              #
-#    Updated: 2024/08/23 19:50:46 by acoste           ###   ########.fr        #
+#    Updated: 2024/08/23 21:22:10 by acoste           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ SRC_FILES = build_ft.c\
 			minishell.c\
 			tokken.c\
 			utils.c\
-			triple_join.c
+			triple_join.c\
+			signals.c
 
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 

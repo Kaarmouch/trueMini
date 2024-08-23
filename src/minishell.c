@@ -6,31 +6,37 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 15:38:59 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/23 19:43:25 by acoste           ###   ########.fr       */
+/*   Updated: 2024/08/23 21:23:35 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-/*
-void	redirect_signals(void)
+
+char	*print_line(void)
 {
-	signal(SIGINT, )
+	char	*line;
+
+	line = readline("MY_minishell : ");
+	if (is_empty_line(line) == 0)
+		add_history(line);
+	if (*line == 4)
+	{
+		write(1, "exit", 4);
+		return(0);
+	}
+	return (line);
 }
-*/
 static void	minishell(t_env *env)
 {
 	char	*line;
 	t_token	*toks;
 	int		run;
 
-	(void)env;
 	run = 1;
 	while (run)
 	{
+		line = print_line();
 		toks = NULL;
-		line = readline("MY_minishell : ");
-		if (line || !is_empty_line(line))
-			add_history(line);
 		build_tokens(line, &toks, env);
 	}
 	clear_history();
@@ -44,7 +50,7 @@ int	main(int ac, char **av, char **ev)
 	(void)av;
 	env = NULL;
 	init_env(&env, ev);
-	//redirect_signals(); // TODO alexis
+//	redirect_signals();
 	minishell(env);
 	free_env(env);
 	return (0);
