@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 15:38:59 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/24 17:01:16 by acoste           ###   ########.fr       */
+/*   Updated: 2024/08/24 17:27:43 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	minishell(t_env *env)
 		line = readline("MY_minishell : ");
 		if (!line)
 		{
-			write(1, "exit", 4);
+			write(1, "exit\n", 5);
 			clear_history();
 			return (0);
 		}

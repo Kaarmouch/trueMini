@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:59:27 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/23 19:40:51 by acoste           ###   ########.fr       */
+/*   Updated: 2024/08/24 21:37:09 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,10 @@ int	ft_cmp(char *o, char *t)
 	while (o[i])
 	{
 		if (o[i] != t[i])
-			return (0);
+			return (o[i] - t[i]);
 		i++;
 	}
-	if (t[i])
-		return (0);
-	return (1);
+	return (o[i] - t[i]);
 }
 
 char	*ft_strdup(char *str)
