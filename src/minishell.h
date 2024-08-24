@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 15:38:59 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/23 21:22:36 by acoste           ###   ########.fr       */
+/*   Updated: 2024/08/24 16:48:42 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ char	*ft_strjoin_t(char *strt, char *mid, char *end);
 void	ft_strcpy(char *str, char *dest);
 
 //minishell
-char	*print_line(void);
 
 //split_ws
 char	**splt_white(char *s);
