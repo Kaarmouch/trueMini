@@ -6,11 +6,24 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 15:38:59 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/24 17:27:43 by aglampor         ###   ########.fr       */
+/*   Updated: 2024/08/25 20:48:40 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+static int	is_pipe(t_token *t)
+{
+	t_token	*temp;
+
+	temp = t;
+	while (temp)
+	{
+		if(temp->type == PIPE)
+			return (1);
+		temp = temp->next;
+	}
+	return (0);
+}
 
 static int	minishell(t_env *env)
 {
@@ -32,8 +45,22 @@ static int	minishell(t_env *env)
 			add_history(line);
 		toks = NULL;
 		build_tokens(line, &toks, env);
+		if (!is_pipe(toks))
+			exe(toks, env);
+		else
+			write(1, "JE GG PA I A D PIPE\n", 20);
+
 	}
 	clear_history();
+	return (0);
+}
+
+int	exe(t_token *ts, t_env *e)
+{
+	if (ts->type == BUILTIN || ts->type == CMD)
+		return (ex_cmd(t, e));
+	else
+		write(1, "Reflexion++\n", 12);
 	return (0);
 }
 

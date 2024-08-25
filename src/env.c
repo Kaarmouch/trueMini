@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 15:38:59 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/24 20:26:24 by aglampor         ###   ########.fr       */
+/*   Updated: 2024/08/25 20:17:00 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	free_env(t_env	*p)
 		p = tmp;
 	}
 }
-static int	get_idx(char *s, char c)
+
+int	get_idx(char *s, char c)
 {
 	int	i;
 
@@ -35,7 +36,7 @@ static int	get_idx(char *s, char c)
 	return (i);
 }
 	
-static char	**constructor(char *s)
+char	**constructor(char *s)
 {
 	char	**build;
 	int		flag;
