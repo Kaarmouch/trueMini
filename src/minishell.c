@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 15:38:59 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/25 20:48:40 by aglampor         ###   ########.fr       */
+/*   Updated: 2024/08/25 20:50:50 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static int	minishell(t_env *env)
 			exe(toks, env);
 		else
 			write(1, "JE GG PA I A D PIPE\n", 20);
-
 	}
 	clear_history();
 	return (0);

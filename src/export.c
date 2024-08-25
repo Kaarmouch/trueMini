@@ -6,11 +6,11 @@
 /*   By: aglampor <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 20:28:06 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/25 20:44:10 by aglampor         ###   ########.fr       */
+/*   Updated: 2024/08/25 20:50:19 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.c"
+#include "minishell.h"
 
 static int	is_in(int idx, int *tri)
 {
