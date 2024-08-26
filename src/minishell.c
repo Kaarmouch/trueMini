@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 15:38:59 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/25 20:50:50 by aglampor         ###   ########.fr       */
+/*   Updated: 2024/08/26 16:36:21 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	is_pipe(t_token *t)
 	return (0);
 }
 
-static int	minishell(t_env *env)
+static int	minishell(t_env **env)
 {
 	char	*line;
 	t_token	*toks;
@@ -44,9 +44,9 @@ static int	minishell(t_env *env)
 		if (is_empty_line(line) == 0)
 			add_history(line);
 		toks = NULL;
-		build_tokens(line, &toks, env);
+		build_tokens(line, &toks, *env);
 		if (!is_pipe(toks))
-			exe(toks, env);
+			s_exe(toks, env);
 		else
 			write(1, "JE GG PA I A D PIPE\n", 20);
 	}
@@ -54,10 +54,10 @@ static int	minishell(t_env *env)
 	return (0);
 }
 
-int	exe(t_token *ts, t_env *e)
+int	s_exe(t_token *ts, t_env **e)
 {
 	if (ts->type == BUILTIN || ts->type == CMD)
-		return (ex_cmd(t, e));
+		return (ex_cmd(ts, e));
 	else
 		write(1, "Reflexion++\n", 12);
 	return (0);
@@ -73,7 +73,7 @@ int	main(int ac, char **av, char **ev)
 	init_env(&env, ev);
 	rl_catch_signals = 0;
 	redirect_signals();
-	minishell(env);
+	minishell(&env);
 	free_env(env);
 	return (0);
 }

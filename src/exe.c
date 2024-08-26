@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_buildin.c                                        :+:      :+:    :+:   */
+/*   exe.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aglampor <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/25 19:59:06 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/26 16:55:10 by aglampor         ###   ########.fr       */
+/*   Created: 2024/08/26 16:21:36 by aglampor          #+#    #+#             */
+/*   Updated: 2024/08/26 16:49:50 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "minishell.h"
 
-int     export(t_token *t, t_env **myEnv)
+int	ex_cmd(t_token	*ts, t_env **e)
 {
-        int     err;
-
-        if (t->next && ((t->next)->type) != PIPE)
-                err = add_myenv(t, myEnv);
-        else
-                err = build_export(*(myEnv));
-        return (err);
+	if (ts->type == CMD)
+		printf("HAVE to code CMD\n");
+	else if (!ft_cmp("export", ts->value))
+		return (export(ts, e));
+	return (printf("CODE the nxt BUILTIN"));
 }
-

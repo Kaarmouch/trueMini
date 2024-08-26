@@ -6,7 +6,7 @@
 /*   By: aglampor <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 19:47:14 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/25 20:32:22 by aglampor         ###   ########.fr       */
+/*   Updated: 2024/08/26 16:48:47 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -79,15 +79,15 @@ int	is_builtin(char *s)
 
 int	is_redir(char *s)
 {
-	if (ft_cmp("<", s))
+	if (!ft_cmp("<", s))
 		return (RIN);
-	if (ft_cmp("<<", s))
+	if (!ft_cmp("<<", s))
 		return (RRIN);
-	if (ft_cmp(">", s))
+	if (!ft_cmp(">", s))
 		return (ROUT);
-	if (ft_cmp(">>", s))
+	if (!ft_cmp(">>", s))
 		return (RROUT);
-	if (ft_cmp("|", s))
+	if (!ft_cmp("|", s))
 		return (PIPE);
 	return (0);
 }

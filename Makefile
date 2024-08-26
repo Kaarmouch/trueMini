@@ -6,7 +6,7 @@
 #    By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/27 15:05:19 by aglampor          #+#    #+#              #
-#    Updated: 2024/08/25 20:30:01 by aglampor         ###   ########.fr        #
+#    Updated: 2024/08/26 16:31:35 by aglampor         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC_FILES = build_ft.c\
 			f_buildin.c\
 			verif.c\
 			export.c\
+			exe.c\
 			ft_split.c\
 			split_ws.c\
 			minishell.c\

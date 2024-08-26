@@ -6,7 +6,7 @@
 /*   By: aglampor <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 20:28:06 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/25 20:50:19 by aglampor         ###   ########.fr       */
+/*   Updated: 2024/08/26 17:35:10 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,27 +36,26 @@ int	add_myenv(t_token *toks, t_env **myenv)
 
 static void	add_croiss(t_env *e, int *tri)
 {
-	t_env	*p1;
-	t_env	*p2;
-	int		idx;
+	t_env	*min;
+	t_env	*compare;
 	int		i;
 
 	i = 0;
-	p1 = e;
-	while (p1)
+	min = e;
+	while (min)
 	{
-		idx = p1->index;
-		p2 = p1->next;
-		while (p2)
+		compare = min->next;
+		while (compare)
 		{
-			if (!(is_in(p2->index, tri)) && ft_cmp(p1->key, p2->key) > 0)
-				idx = p2->index;
-			p2 = p2->next;
+			if (!(is_in(compare->index, tri)) && ft_cmp(min->key, compare->key) > 0)
+				min = compare;
+			compare = compare->next;
 		}
-		tri[i] = idx;
+		tri[i] = min->index;
 		i++;
-		while (p1 && is_in(p1->index, tri))
-			p1 = p1->next;
+		min = e;
+		while (min && is_in(min->index, tri))
+			min = min->next;
 	}
 }
 
@@ -66,7 +65,7 @@ static int      w_export(t_env *myenv)
         write(1 ,myenv->key, ft_strlen(myenv->key));
         if (myenv->value != NULL)
 	{
-		write(1 , "\"", 1);
+		write(1 , "=\"", 2);
                 write(1 ,myenv->value, ft_strlen(myenv->value));
 		write(1 , "\"", 1);
 	}

@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 15:38:59 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/25 20:37:17 by aglampor         ###   ########.fr       */
+/*   Updated: 2024/08/26 16:33:48 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	m_exit(int code, char *val);
 
 //export
 int	build_export(t_env *e);
-
 int     add_myenv(t_token *toks, t_env **myenv);
 
 //f_builtin
@@ -88,7 +87,10 @@ char	*ft_strjoin_t(char *strt, char *mid, char *end);
 void	ft_strcpy(char *str, char *dest);
 
 //minishell
-int     exe(t_token *ts, t_env *e);
+int     s_exe(t_token *ts, t_env **e);
+
+//exe
+int     ex_cmd(t_token  *ts, t_env **e);
 
 //split_ws
 char	**splt_white(char *s);
