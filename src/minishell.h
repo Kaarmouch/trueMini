@@ -105,7 +105,8 @@ void	printtok(t_token **t);
 void	build_tokens(char *line, t_bag **bag);
 
 //tok_utils
-int	is_redir(char *str);
+int	type_redir(char *cmd);
+int	len_redir(char *str);
 int	end_tok(char *s);
 void	ft_addb_tok(t_token **p, t_token *new);
 int	type_tok(char *s, t_env *env);
