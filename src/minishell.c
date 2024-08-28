@@ -6,49 +6,35 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 15:38:59 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/26 16:36:21 by aglampor         ###   ########.fr       */
+/*   Updated: 2024/08/28 14:57:41 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-static int	is_pipe(t_token *t)
-{
-	t_token	*temp;
 
-	temp = t;
-	while (temp)
-	{
-		if(temp->type == PIPE)
-			return (1);
-		temp = temp->next;
-	}
-	return (0);
-}
-
-static int	minishell(t_env **env)
+static int	minishell(t_bag **bag)
 {
 	char	*line;
-	t_token	*toks;
-	int		run;
 
-	run = 1;
-	while (run)
+	while (1)
 	{
 		line = readline("MY_minishell : ");
-		if (!line)
+		if (!line || !ft_cmp("exit", line))
 		{
 			write(1, "exit\n", 5);
 			clear_history();
-			return (0);
+			break ;
 		}
 		if (is_empty_line(line) == 0)
 			add_history(line);
-		toks = NULL;
-		build_tokens(line, &toks, *env);
-		if (!is_pipe(toks))
+		(*bag)->tokens = NULL;	//fonction reset_token(bag->tokens) qui free (et pointe vers null)
+		build_tokens(line, bag);
+	/*	if (!is_pipe(toks))
 			s_exe(toks, env);
 		else
-			write(1, "JE GG PA I A D PIPE\n", 20);
+			write(1, "JE GG PA I A D PIPE\n", 20);*/
+		free_tokens((*bag)->tokens);
+
 	}
 	clear_history();
 	return (0);
@@ -56,6 +42,8 @@ static int	minishell(t_env **env)
 
 int	s_exe(t_token *ts, t_env **e)
 {
+	if (!ts)
+		return (0);
 	if (ts->type == BUILTIN || ts->type == CMD)
 		return (ex_cmd(ts, e));
 	else
@@ -65,15 +53,15 @@ int	s_exe(t_token *ts, t_env **e)
 
 int	main(int ac, char **av, char **ev)
 {
-	t_env		*env;
+	t_bag	*bag;
 
-	(void)ac;
 	(void)av;
-	env = NULL;
-	init_env(&env, ev);
+	if (!(bag = malloc(sizeof(t_bag))))
+		return (100);
+	init_env(&(bag->env), ev);
 	rl_catch_signals = 0;
 	redirect_signals();
-	minishell(&env);
-	free_env(env);
-	return (0);
+	minishell(&bag);
+	free(bag);
+	return (ac);
 }

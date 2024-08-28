@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 15:38:59 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/26 16:33:48 by aglampor         ###   ########.fr       */
+/*   Updated: 2024/08/28 14:55:42 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,20 @@
 # define CMD 7
 # define PIPE 8
 
+
+//local_var
+typedef struct s_local_var
+{
+	char	*key;
+	int		*value;
+	struct	s_local_var	*next;
+}	t_lvar;
+
+
 //token
 typedef struct s_token
 {
-	char			*value;
+	char			**value;
 	int				type;
 	struct s_token	*next;
 }	t_token;
@@ -49,6 +59,15 @@ typedef struct s_environement
 	int						index;
 	struct s_environement	*next;
 }	t_env;
+
+//bagage
+typedef struct  s_bag
+{
+        struct  s_environement  *env;
+        struct  s_token *tokens;
+        struct  s_local_var     local_v;
+}       t_bag;
+
 
 //build_ft
 void	ft_lstadd_back(t_env **alst, t_env *new);
@@ -73,14 +92,25 @@ int     add_myenv(t_token *toks, t_env **myenv);
 //f_builtin
 int     export(t_token *t, t_env **myEnv);
 
-//ft_split
+//split_CMD
 char	**ft_split(char *s, char c);
+char	**split_input(char *s);
 void	ft_free_split(char **split);
 int		ft_strlen(char *s);
 
-//tokken
+//ft
+
+//token
 void	printtok(t_token **t);
-void	build_tokens(char *line, t_token **t, t_env *env);
+void	build_tokens(char *line, t_bag **bag);
+
+//tok_utils
+int	is_redir(char *str);
+int	end_tok(char *s);
+void	ft_addb_tok(t_token **p, t_token *new);
+int	type_tok(char *s, t_env *env);
+int	end_cmd(char *s);
+void	free_tokens(t_token *p);
 
 //triple_join
 char	*ft_strjoin_t(char *strt, char *mid, char *end);
@@ -98,10 +128,12 @@ int		is_white(char c);
 char	*word_dup(char *str, int start, int finish);
 
 //utils
-int	find_pipe(t_token *t);
+int	is_c(char *str, char c);
+int	find_c(char *str, char c);
 int		ft_cmp(char *o, char *t);
 char	*ft_strdup(char *str);
 int		is_empty_line(char *line);
+int     is_quote(char c);
 
 //verif
 int		is_builtin(char *s);

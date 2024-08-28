@@ -6,7 +6,7 @@
 /*   By: aglampor <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 19:47:14 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/26 16:48:47 by aglampor         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:34:46 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -21,7 +21,7 @@ int	ft_verif_line(char *line)
 	sb = 0;
 	db = 0;
 	if (is_empty_line(line) == 1)
-		return (1);
+		return (0);
 	while (line[i])
 	{
 		if (line[i] == 34)
@@ -77,7 +77,7 @@ int	is_builtin(char *s)
 	return (0);
 }
 
-int	is_redir(char *s)
+int	t_redir(char *s)
 {
 	if (!ft_cmp("<", s))
 		return (RIN);

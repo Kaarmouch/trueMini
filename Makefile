@@ -6,7 +6,7 @@
 #    By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/27 15:05:19 by aglampor          #+#    #+#              #
-#    Updated: 2024/08/26 16:31:35 by aglampor         ###   ########.fr        #
+#    Updated: 2024/08/28 14:18:51 by aglampor         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,10 +27,12 @@ SRC_FILES = build_ft.c\
 			verif.c\
 			export.c\
 			exe.c\
-			ft_split.c\
+			tok_utils.c\
 			split_ws.c\
+			ft_split.c\
+			split_CMD.c\
 			minishell.c\
-			tokken.c\
+			token.c\
 			utils.c\
 			triple_join.c\
 			signals.c

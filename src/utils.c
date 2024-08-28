@@ -6,24 +6,33 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:59:27 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/25 19:50:13 by aglampor         ###   ########.fr       */
+/*   Updated: 2024/08/28 14:06:35 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+int     is_c(char *str, char c)
+{
+        int     i;
 
-int	find_pipe(t_token *t)
+        i = 0;
+        while (str && str[i])
+	{
+		if (str[i] == c)
+			return (1);
+                i++;
+	}
+        return (0);
+}
+
+
+int	c_find(char *str, char c)
 {
 	int	i;
-	t_token	*temp;
 
 	i = 0;
-	temp = t;
-	while (temp && temp->type != PIPE)
-	{
-		temp = temp->next;
+	while (str && str[i] != c)
 		i++;
-	}
 	return (i);
 }
 
@@ -57,6 +66,15 @@ char	*ft_strdup(char *str)
 	}
 	dup[i] = '\0';
 	return (dup);
+}
+
+int	is_quote(char c)
+{
+	if (c == 34)
+		return (34);
+	else if (c == 39)
+		return (39);
+	return (0);
 }
 
 int	is_empty_line(char *line)
