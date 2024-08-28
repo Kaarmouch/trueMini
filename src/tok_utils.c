@@ -6,7 +6,7 @@
 /*   By: aglampor <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 15:48:54 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/28 14:53:42 by aglampor         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:15:22 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
@@ -41,8 +41,12 @@ int	end_tok(char *s)
 	if ((i = is_redir(s)))
 		return (i);
 	i = 0;
-	while (s[i] && !(is_redir(&s[i + 1])))
+	while (s[i])
+	{
+		if (is_redir(&s[i + 1]))
+			return (i);
 		i++;
+	}
 	return (i);
 }
 
