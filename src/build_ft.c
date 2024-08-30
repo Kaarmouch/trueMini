@@ -15,7 +15,9 @@
 void	ft_lstadd_back(t_env **lst, t_env *new)
 {
 	t_env	*e;
-
+	
+	if (!new)
+		return ;
 	if (!*lst)
 		*lst = new;
 	else

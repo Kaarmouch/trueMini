@@ -46,6 +46,7 @@ char	**constructor(char *s)
 	flag = get_idx(s, '=');
 	build[0] = word_dup(s, 0, flag);
 	build[1] = word_dup(s, (flag + 1), ft_strlen(s));
+	build[2] = 0;
 	return (build);
 }
 
