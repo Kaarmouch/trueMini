@@ -59,6 +59,7 @@ int	main(int ac, char **av, char **ev)
 	if (!(bag = malloc(sizeof(t_bag))))
 		return (100);
 	bag->env = NULL;
+	bag->local_v = NULL;
 	init_env(&(bag->env), ev);
 	rl_catch_signals = 0;
 	redirect_signals();

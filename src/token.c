@@ -22,9 +22,7 @@ static int	bt_u(char *l, t_bag **bag)
 	if (!new)
 		return (-1);
 	j = end_tok(l);
-	printf("end token %d\n",j);
 	l_child = word_dup(l, 0, j);
-	printf("l_child %s\n",l_child);
 	new->value = split_input(l_child);
 	free(l_child);
 	new->type = type_tok(new->value[0], (*bag)->env);
@@ -32,6 +30,14 @@ static int	bt_u(char *l, t_bag **bag)
 	ft_addb_tok(&((*bag)->tokens), new);
 	return (j);
 }
+
+static void	 clean_tok(t_bag **bag)
+{
+	//remouve quote first ?
+	get_localv(bag); //change tout les $xx pour 0 si non existant ou par value
+	remove_redir(&(*bag)->tokens);
+}
+
 
 void	printtok(t_token **t)
 {
@@ -41,7 +47,7 @@ void	printtok(t_token **t)
 	temp = *t;
 	while (temp)
 	{
-		printf("\nNV TOKEN\n");
+		printf("\nNEW TOKENS\n");
 		i = 0;
 		while (temp->value[i])
 		{
@@ -63,7 +69,10 @@ void	build_tokens(char *line, t_bag **bag)
 		while (is_white(line[i]))
 			i++;
 		if (line[i])
+		{
 			i += bt_u(&line[i], bag);
+			cleantoks(bag);
+		}
 	}
 	printtok(&(*bag)->tokens);
 }

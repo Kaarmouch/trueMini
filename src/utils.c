@@ -29,11 +29,15 @@ int     is_c(char *str, char c)
 int	c_find(char *str, char c)
 {
 	int	i;
-
+	
 	i = 0;
 	while (str && str[i] != c)
+	{
+		if (str[i] == c)
+			return (i)
 		i++;
-	return (i);
+	}
+	return (-1);
 }
 
 int	ft_cmp(char *o, char *t)

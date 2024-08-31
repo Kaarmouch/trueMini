@@ -48,6 +48,8 @@ typedef struct s_token
 {
 	char			**value;
 	int				type;
+	int				fdin;
+	int				fdout;
 	struct s_token	*next;
 }	t_token;
 
