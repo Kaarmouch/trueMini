@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 14:59:27 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/28 14:06:35 by aglampor         ###   ########.fr       */
+/*   Updated: 2024/09/03 17:54:08 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ int     is_c(char *str, char c)
 }
 
 
-int	c_find(char *str, char c)
+int	find_c(char *str, char c)
 {
 	int	i;
 	
 	i = 0;
-	while (str && str[i] != c)
+	while (str[i])
 	{
 		if (str[i] == c)
-			return (i)
+			return (i);
 		i++;
 	}
 	return (-1);

@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 15:38:59 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/28 14:57:41 by aglampor         ###   ########.fr       */
+/*   Updated: 2024/09/03 17:46:23 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	main(int ac, char **av, char **ev)
 	(void)av;
 	if (!(bag = malloc(sizeof(t_bag))))
 		return (100);
+	bag->env = NULL;
 	init_env(&(bag->env), ev);
 	rl_catch_signals = 0;
 	redirect_signals();

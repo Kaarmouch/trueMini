@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 17:16:34 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/31 17:34:42 by aglampor         ###   ########.fr       */
+/*   Updated: 2024/09/03 16:54:43 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static void	clean_tok(t_bag **bag)
 {
 	//remouve quote first ?
 	//get_localv(bag); //change tout les $xx pour 0 si non existant ou par value
+	printf("Cleaning !!\n");
 	remove_redir(&(*bag)->tokens);
 }
 
@@ -47,7 +48,7 @@ void	printtok(t_token **t)
 	temp = *t;
 	while (temp)
 	{
-		printf("\nNV TOKEN\n");
+		printf("\n   NV TOKEN\n");
 		i = 0;
 		while (temp->value[i])
 		{
