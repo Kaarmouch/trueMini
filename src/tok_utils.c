@@ -18,7 +18,8 @@ void    free_tokens(t_token  *p)
         while (p)
         {
                 tmp = p->next;
-		ft_free_split(p->value);
+		if (p->value)
+			ft_free_split(p->value);
                 free(p);
                 p = tmp;
         }

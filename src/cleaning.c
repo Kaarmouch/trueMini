@@ -1,77 +1,106 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cleaning.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aglampor <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/31 14:22:37 by aglampor          #+#    #+#             */
+/*   Updated: 2024/09/03 17:56:46 by aglampor         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-static int	redir_type(char	*str)
+int	redir_type(char	*str)
 {
-	if (!c_find(str ,">"))
+	if (!(find_c(str ,'>')))
 	{
-		if (ft_cmp(str,">") && !(c_find(&str[1], '>')))
-			return (RROUT)
+		if (str[1] && !((find_c(&str[1], '>'))))
+			return (RROUT);
 		return (ROUT);
 	}
-	if (!ft_cmp("<", str))
+	if ((find_c(str, '<') == 0))
 	{
-		if (ft_cmp(str, "<") && !c_find(&str[i] ,'<'))
-			return (RRIN)
+		if (str[1] && !(find_c(&str[1] ,'<')))
+			return (RRIN);
 		return (RRIN);
 	}
 	return (0);
 }
 
-static char	*one_wrd_redir(char *token)
+int	open_file(char *fic_name, int redir)
 {
-	int	i;
+	int	fd;
 
-	i = 0;
-	while (token[i] == '>')
+	if (redir == RRIN || redir == RROUT)
+		fd = open(fic_name, O_WRONLY | O_CREAT | O_APPEND, 0777);
+	else
+		fd = open(fic_name, O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	return (fd);
+}
+
+
+char	*owr(char *cmd)
+{
+	if (cmd[0] == '>')
 	{
-		i++;
-		if (token[i] && token[i] != '>')
-			return (ft_strdup(&(token[i])))
+		if (cmd[1] && cmd[1] != '>')
+			return (ft_strdup(&(cmd[1])));
+		else if (cmd[1] == '>' && cmd[2])
+			return (ft_strdup(&(cmd[2])));
 	}
-	while (token[i] == '<')
+	if (cmd[0] == '<')
         {
-                i++;
-                if (token[i] && token[i] != '<')
-                        return (ft_strdup(&(token[i])))
+                if (cmd[1] && cmd[1] != '<')
+                        return (ft_strdup(&(cmd[1])));
+		else if (cmd[1] == '<' && cmd[2])
+			return (ft_strdup(&(cmd[2])));
         }
 	return (NULL);
 }
 
-void	refresh_tok(t_token **t, int fd, int type_redir)
+void	refresh_tok(t_token **t, char *fic, int type_redir)
 {
+	int	fd;
+
+	fd = open_file(fic, type_redir);
 	if (type_redir == RIN || type_redir == RRIN)
+	{
+		if ((*t)->fdin)
+			close(fd);
 		(*t)->fdin = fd;
-	else if (type_redir == RIN || type_redir == RRIN)
-                (*t)->fdin = fd;
+	}
+	else if (type_redir == ROUT || type_redir == RROUT)
+	{
+		if ((*t)->fdin)
+			close(fd);
+                (*t)->fdout = fd;
+	}
 }
+
 
 //repalce selon la redir
 void	remove_redir(t_token **ts)
 {
-	char	*fic_name;
-	t_token		*tmp;
-	int	last_fd;
-	int	redir;
 	int	i;
+	t_token		*p_first;
 
-	j = 0;
-	tmp = *ts;
-	while (*ts)
+	p_first = (*ts);
+	while ((*ts))
 	{
 		i = 0;
-		while ((*ts)->value[i])
+		while((*ts)->value[i])
 		{
-			if ((redir = fic_redir((*ts)->value[i])))
+			if (redir_type((*ts)->value[i]))
 			{
-				fic_name = one_wrd_redir((*ts)->value[i]);
-				if(!fic_name && (*ts)->value[i + 1])
-					fic_name = ft_strdup((*ts)->value[i + 1]);
-				last_fd = open_file(fic_name, redir);
-				refresh_tok(&(*ts), last_fd, redir);
+				printf("%s is redir\n",(*ts)->value[i]);
+				(*ts)->value = redir_realloc(&(*ts));
+				break;
 			}
 			i++;
 		}
-		(*ts) = (*ts)->next;
+		(*ts) = (*ts)->next; 
 	}
-	*ts = tmp;
+	(*ts) = p_first;
 }

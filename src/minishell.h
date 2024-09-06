@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 15:38:59 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/28 14:55:42 by aglampor         ###   ########.fr       */
+/*   Updated: 2024/09/03 17:22:23 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,14 @@ void	m_exit(int code, char *val);
 int	build_export(t_env *e);
 int     add_myenv(t_token *toks, t_env **myenv);
 
+//cleaning
+void    refresh_tok(t_token **t, char *fic, int type_redir);
+void    remove_redir(t_token **ts);
+int     open_file(char *fic_name, int redir);
+int	redir_type(char *cmd);
+char     **redir_realloc(t_token **token);
+char	*owr(char *cmd);
+
 //f_builtin
 int     export(t_token *t, t_env **myEnv);
 
@@ -100,16 +108,12 @@ char	**split_input(char *s);
 void	ft_free_split(char **split);
 int		ft_strlen(char *s);
 
-//ft
 
 //token
 void	printtok(t_token **t);
 void	build_tokens(char *line, t_bag **bag);
 
 //tok_utils
-void	remove_redir(t_token **ts);
-void    refresh_tok(t_token **t, int fd, int type_redir);
-int	type_redir(char *cmd);
 int	len_redir(char *str);
 int	end_tok(char *s);
 void	ft_addb_tok(t_token **p, t_token *new);
