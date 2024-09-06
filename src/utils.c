@@ -34,7 +34,7 @@ int	c_find(char *str, char c)
 	while (str && str[i] != c)
 	{
 		if (str[i] == c)
-			return (i)
+			return (i);
 		i++;
 	}
 	return (-1);

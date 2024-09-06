@@ -55,7 +55,7 @@ void	remove_redir(t_token **ts)
 	int	i;
 
 	j = 0;
-	tmp = *ts
+	tmp = *ts;
 	while (*ts)
 	{
 		i = 0;
@@ -75,7 +75,3 @@ void	remove_redir(t_token **ts)
 	}
 	*ts = tmp;
 }
-				
-
-
-				

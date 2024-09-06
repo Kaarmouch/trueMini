@@ -25,6 +25,7 @@ SRC_FILES = build_ft.c\
 			exit.c\
 			f_buildin.c\
 			verif.c\
+			cleaning.c\
 			export.c\
 			exe.c\
 			tok_utils.c\

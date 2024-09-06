@@ -31,10 +31,10 @@ static int	bt_u(char *l, t_bag **bag)
 	return (j);
 }
 
-static void	 clean_tok(t_bag **bag)
+static void	 clean_toks(t_bag **bag)
 {
 	//remouve quote first ?
-	get_localv(bag); //change tout les $xx pour 0 si non existant ou par value
+//	get_localv(bag); //change tout les $xx pour 0 si non existant ou par value
 	remove_redir(&(*bag)->tokens);
 }
 
@@ -65,14 +65,14 @@ void	build_tokens(char *line, t_bag **bag)
 
 	i = 0;
 	while (line[i] && i < ft_strlen(line))
-	{
+	{	
 		while (is_white(line[i]))
 			i++;
 		if (line[i])
 		{
 			i += bt_u(&line[i], bag);
-			cleantoks(bag);
 		}
 	}
+	clean_toks(bag);
 	printtok(&(*bag)->tokens);
 }

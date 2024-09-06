@@ -67,7 +67,7 @@ typedef struct  s_bag
 {
         struct  s_environement  *env;
         struct  s_token *tokens;
-        struct  s_local_var     local_v;
+        struct  s_local_var     *local_v;
 }       t_bag;
 
 
@@ -107,6 +107,8 @@ void	printtok(t_token **t);
 void	build_tokens(char *line, t_bag **bag);
 
 //tok_utils
+void	remove_redir(t_token **ts);
+void    refresh_tok(t_token **t, int fd, int type_redir);
 int	type_redir(char *cmd);
 int	len_redir(char *str);
 int	end_tok(char *s);
