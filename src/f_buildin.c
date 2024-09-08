@@ -11,14 +11,14 @@
 /* ************************************************************************** */
 #include "minishell.h"
 
-int     export(t_token *t, t_env **myEnv)
+int     ft_export(t_token *t, t_env **myEnv)
 {
         int     err;
 
-        if (t->next && ((t->next)->type) != PIPE)
-                err = add_myenv(t, myEnv);
+        if (t->value[1])
+                err = export_args(t, myEnv, 1);
         else
-                err = build_export(*(myEnv));
+                err = export_no_arg(*(myEnv));
         return (err);
 }
 

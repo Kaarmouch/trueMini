@@ -24,7 +24,6 @@ static int	bt_u(char *l, t_bag **bag)
 	j = end_tok(l);
 	l_child = word_dup(l, 0, j);
 	new->value = split_input(l_child);
-	free(l_child);
 	new->type = type_tok(new->value[0], (*bag)->env);
 	new->next = 0;
 	new->fdin = 0;
@@ -42,20 +41,21 @@ static void	clean_tok(t_bag **bag)
 
 void	printtok(t_token **t)
 {
-	t_token	*temp;
+	t_token	*tmp;
 	int	i;
 
-	temp = *t;
-	while (temp)
+	tmp = *t;
+	while (tmp)
 	{
 		printf("\n   NV TOKEN\n");
 		i = 0;
-		while (temp->value[i])
+		while (tmp->value[i])
 		{
-			printf("value %s\n", temp->value[i]);
+			printf("value %s\n", tmp->value[i]);
 			i++;
 		}
-		temp = temp->next;
+		printf("type %d\n",tmp->type);
+		tmp = tmp->next;
 	}
 }
 

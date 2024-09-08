@@ -29,23 +29,18 @@ static int	minishell(t_bag **bag)
 			add_history(line);
 		(*bag)->tokens = NULL;	//fonction reset_token(bag->tokens) qui free (et pointe vers null)
 		build_tokens(line, bag);
-	/*	if (!is_pipe(toks))
-			s_exe(toks, env);
-		else
-			write(1, "JE GG PA I A D PIPE\n", 20);*/
+		if ((*bag)->tokens)
+			s_exe((*bag)->tokens, &(*bag)->env);
 		free_tokens((*bag)->tokens);
-
 	}
 	clear_history();
 	return (0);
 }
 
-int	s_exe(t_token *ts, t_env **e)
+int	s_exe(t_token *t, t_env **menv)
 {
-	if (!ts)
-		return (0);
-	if (ts->type == BUILTIN || ts->type == CMD)
-		return (ex_cmd(ts, e));
+	if (t->type == BUILTIN || t->type == CMD)
+		return (ex_cmd(t, menv));
 	else
 		write(1, "Reflexion++\n", 12);
 	return (0);

@@ -93,20 +93,11 @@ void	ft_addb_tok(t_token **p, t_token *new)
 
 int	type_tok(char *s, t_env *env)
 {
-	int	val;
-
-	printf("%d\n", s[0]);
-	if ((val = open(s, O_RDONLY, 0776)) != -1)
-	{
-		close(val);
-		return (FD);
-	}
-	else if (s[0] == 45)
+	printf("type_tok\n");
+	if (s[0] == 45)
 		return (OPTION);
 	else if (s[0] == '/')
 		return (DIRECTORY);
-	else if ((val = type_redir(s)) != 0)
-		return (val);
 	else if (is_builtin(s))
 		return (BUILTIN);
 	else if (is_cmd(s, env))

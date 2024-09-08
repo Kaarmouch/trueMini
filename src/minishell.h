@@ -33,16 +33,6 @@
 # define CMD 7
 # define PIPE 8
 
-
-//local_var
-typedef struct s_local_var
-{
-	char	*key;
-	int		*value;
-	struct	s_local_var	*next;
-}	t_lvar;
-
-
 //token
 typedef struct s_token
 {
@@ -67,7 +57,6 @@ typedef struct  s_bag
 {
         struct  s_environement  *env;
         struct  s_token *tokens;
-        struct  s_local_var     *local_v;
 }       t_bag;
 
 
@@ -75,7 +64,7 @@ typedef struct  s_bag
 void	ft_lstadd_back(t_env **alst, t_env *new);
 t_env	*ft_lstnew(char *key, char *value);
 t_env	*ft_lstlast(t_env *lst);
-void	ft_delnode_key(t_env **lst, char *key );
+void	ft_delnode_key(t_env **lst, char *key);
 void	ft_indexion(t_env *list);
 
 //env
@@ -88,8 +77,8 @@ void	init_env(t_env **env, char **ev);
 void	m_exit(int code, char *val);
 
 //export
-int	build_export(t_env *e);
-int     add_myenv(t_token *toks, t_env **myenv);
+int	export_no_arg(t_env *e);
+int	export_args(t_token *ts, t_env **myev, int i);
 
 //cleaning
 void    refresh_tok(t_token **t, char *fic, int type_redir);
@@ -100,7 +89,7 @@ char     **redir_realloc(t_token **token);
 char	*owr(char *cmd);
 
 //f_builtin
-int     export(t_token *t, t_env **myEnv);
+int     ft_export(t_token *t, t_env **myEnv);
 
 //split_CMD
 char	**ft_split(char *s, char c);
@@ -126,7 +115,7 @@ char	*ft_strjoin_t(char *strt, char *mid, char *end);
 void	ft_strcpy(char *str, char *dest);
 
 //minishell
-int     s_exe(t_token *ts, t_env **e);
+int     s_exe(t_token *t, t_env **menv);
 
 //exe
 int     ex_cmd(t_token  *ts, t_env **e);

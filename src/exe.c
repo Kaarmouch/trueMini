@@ -17,6 +17,6 @@ int	ex_cmd(t_token	*ts, t_env **e)
 	if (ts->type == CMD)
 		printf("HAVE to code CMD\n");
 	else if (!ft_cmp("export", ts->value[0]))
-		return (export(ts, e));
+		return (ft_export(ts, e));
 	return (printf("CODE the nxt BUILTIN"));
 }

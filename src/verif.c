@@ -68,11 +68,9 @@ int	is_cmd(char *s, t_env *env)
 
 int	is_builtin(char *s)
 {
-	if (ft_cmp("echo", s) || ft_cmp("cd", s) || ft_cmp("pwd", s))
+	if (!ft_cmp("echo", s) || !ft_cmp("cd", s) || !ft_cmp("pwd", s))
 		return (1);
-	if (ft_cmp("export", s) || ft_cmp("unset", s) || ft_cmp("env", s))
-		return (1);
-	if (ft_cmp("exit", s))
+	if (!ft_cmp("export", s) || !ft_cmp("unset", s) || !ft_cmp("env", s))
 		return (1);
 	return (0);
 }
