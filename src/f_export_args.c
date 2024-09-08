@@ -28,7 +28,7 @@ static void	add_myenv(char	*arg, t_env **myenv)
 	ft_lstadd_back(myenv, new);
 }
 
-static int	is_in_ev(char *arg, t_env *myev)
+int	is_in_ev(char *arg, t_env *myev)
 {
 	char	*k;
 	int		flag;

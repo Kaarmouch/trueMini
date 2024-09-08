@@ -64,7 +64,7 @@ typedef struct  s_bag
 void	ft_lstadd_back(t_env **alst, t_env *new);
 t_env	*ft_lstnew(char *key, char *value);
 t_env	*ft_lstlast(t_env *lst);
-void	ft_delnode_key(t_env **lst, char *key);
+void	ft_delnode_idx(t_env **lst, int	idx);
 void	ft_indexion(t_env *list);
 
 //env
@@ -79,6 +79,7 @@ void	m_exit(int code, char *val);
 //export
 int	export_no_arg(t_env *e);
 int	export_args(t_token *ts, t_env **myev, int i);
+int     is_in_ev(char *arg, t_env *myev);
 
 //cleaning
 void    refresh_tok(t_token **t, char *fic, int type_redir);
@@ -90,6 +91,8 @@ char	*owr(char *cmd);
 
 //f_builtin
 int     ft_export(t_token *t, t_env **myEnv);
+int     ft_env(t_token *t, t_env *menv);
+int     ft_unset(char **cmds, t_env **menv);
 
 //split_CMD
 char	**ft_split(char *s, char c);

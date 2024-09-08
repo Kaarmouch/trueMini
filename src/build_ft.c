@@ -68,16 +68,18 @@ void	ft_indexion(t_env *list)
 	}
 }
 
-void	ft_delnode_key(t_env **lst, char *key )
+void	ft_delnode_idx(t_env **lst, int idx)
 {
 	t_env	*temp;
 	t_env	*flag;
+	int	i;
 
+	i = 0;
 	if (lst == NULL || *lst == NULL)
 		return ;
 	flag = NULL;
 	temp = *lst;
-	while (temp && ft_cmp(temp->key, key) == 0)
+	while (i++ < idx)
 	{
 		flag = temp;
 		temp = temp->next;
@@ -86,10 +88,10 @@ void	ft_delnode_key(t_env **lst, char *key )
 		return ;
 	if (!flag)
 		*lst = (*lst)->next;
-	else if (temp->next)
+	else
 		flag->next = temp->next;
-	else if (!temp->next)
-		flag->next = NULL;
+	free(temp->value);
+	free(temp->key);
 	free(temp);
 	ft_indexion(*lst);
 }
