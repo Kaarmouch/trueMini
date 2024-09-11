@@ -23,12 +23,13 @@ static int	minishell(t_bag **bag)
 		{
 			write(1, "exit\n", 5);
 			clear_history();
-			break ;
+			return(free(line), 0);
 		}
 		if (is_empty_line(line) == 0)
 			add_history(line);
 		(*bag)->tokens = NULL;	//fonction reset_token(bag->tokens) qui free (et pointe vers null)
 		build_tokens(line, bag);
+		free(line);
 		if ((*bag)->tokens)
 			s_exe((*bag)->tokens, &(*bag)->env);
 		free_tokens((*bag)->tokens);
@@ -51,8 +52,9 @@ int	main(int ac, char **av, char **ev)
 	t_bag	*bag;
 
 	(void)av;
+	(void)ac;
 	if (!(bag = malloc(sizeof(t_bag))))
-		return (100);
+		return (1);
 	bag->env = NULL;
 	init_env(&(bag->env), ev);
 	rl_catch_signals = 0;
@@ -60,5 +62,5 @@ int	main(int ac, char **av, char **ev)
 	minishell(&bag);
 	free_env((bag->env));
 	free(bag);
-	return (ac);
+	return (0);
 }
