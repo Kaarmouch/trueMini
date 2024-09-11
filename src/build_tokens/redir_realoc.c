@@ -9,7 +9,7 @@
 /*   Updated: 2024/09/03 18:09:39 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "minishell.h"
+#include "../minishell.h"
 
 static int 	count_redir(char** cmds)
 {

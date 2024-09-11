@@ -9,7 +9,7 @@
 /*   Updated: 2024/08/26 16:55:10 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "minishell.h"
+#include "../minishell.h"
 
 int     ft_export(t_token *t, t_env **myEnv)
 {
@@ -51,7 +51,7 @@ int     ft_unset(char **cmds, t_env **menv)
         i = 0;
         while (cmds[i])
         {
-		id_targ= is_in_ev(cmds[i], (*menv));
+		id_targ = is_in_ev(cmds[i], (*menv));
                 if (id_targ != -1)
                         ft_delnode_idx(menv ,id_targ);
 		else

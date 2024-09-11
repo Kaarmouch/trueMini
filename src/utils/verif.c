@@ -9,7 +9,7 @@
 /*   Updated: 2024/08/27 18:34:46 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "minishell.h"
+#include "../minishell.h"
 
 int	ft_verif_line(char *line)
 {

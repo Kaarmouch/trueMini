@@ -14,27 +14,17 @@
 
 void	free_env(t_env	*p)
 {
-	t_env	*tmp;
-
+	t_env	*next;
+	
 	while (p)
-	{
-		tmp = p->next;
+	{	
+		next = p->next; 
 		free(p->key);
 		if (p->value)
 			free(p->value);
 		free(p);
-		p = tmp;
+		p = next;
 	}
-}
-
-int	get_idx(char *s, char c)
-{
-	int	i;
-
-	i = 0;
-	while (s[i] != c)
-		i++;
-	return (i);
 }
 	
 char	**constructor(char *s)
@@ -43,7 +33,7 @@ char	**constructor(char *s)
 	int		flag;
 
 	build = malloc(sizeof(char *) * 3);
-	flag = get_idx(s, '=');
+	flag = find_c(s, '=');
 	build[0] = word_dup(s, 0, flag);
 	build[1] = word_dup(s, (flag + 1), ft_strlen(s));
 	build[2] = 0;

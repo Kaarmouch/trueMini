@@ -9,7 +9,7 @@
 /*   Updated: 2024/08/28 15:15:22 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "minishell.h"
+#include "../minishell.h"
 
 void    free_tokens(t_token  *p)
 {

@@ -9,8 +9,7 @@
 /*   Updated: 2024/08/26 17:35:10 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "minishell.h"
+#include "../minishell.h"
 
 static int	is_in(int idx, int *tri)
 {

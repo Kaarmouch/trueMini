@@ -20,25 +20,26 @@ LDFLAGS = -lreadline #-lft
 
 SRC_DIR = src/
 
-SRC_FILES = build_ft.c\
-			env.c\
+SRC_FILES =		env.c\
 			exit.c\
-			f_buildin.c\
-			verif.c\
-			f_export_no_arg.c\
-			f_export_args.c\
+			builtin/f_buildin.c\
+			utils/verif.c\
+			builtin/f_export_no_arg.c\
+			builtin/f_export_args.c\
 			exe.c\
-			tok_utils.c\
-			split_ws.c\
-			ft_split.c\
-			cleaning.c\
-			redir_realoc.c\
-			split_CMD.c\
+			utils/env_utils.c\
+			build_tokens/tok_utils.c\
+			utils/split_ws.c\
+			utils/ft_split.c\
+			build_tokens/cleaning.c\
+			build_tokens/redir_realoc.c\
+			utils/split_CMD.c\
 			minishell.c\
-			tokens.c\
-			utils.c\
-			triple_join.c\
+			build_tokens/tokens.c\
+			utils/utils.c\
+			utils/triple_join.c\
 			signals.c
+
 
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 

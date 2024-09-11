@@ -9,22 +9,7 @@
 /*   Updated: 2024/09/03 17:54:08 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "minishell.h"
-int     is_c(char *str, char c)
-{
-        int     i;
-
-        i = 0;
-        while (str && str[i])
-	{
-		if (str[i] == c)
-			return (1);
-                i++;
-	}
-        return (0);
-}
-
+#include "../minishell.h"
 
 int	find_c(char *str, char c)
 {

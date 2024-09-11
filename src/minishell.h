@@ -68,7 +68,6 @@ void	ft_delnode_idx(t_env **lst, int	idx);
 void	ft_indexion(t_env *list);
 
 //env
-int	get_idx(char *s, char c);
 char	**constructor(char *s);
 void	free_env(t_env	*p);
 void	init_env(t_env **env, char **ev);

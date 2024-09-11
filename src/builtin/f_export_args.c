@@ -9,8 +9,7 @@
 /*   Updated: 2024/08/26 17:35:10 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "minishell.h"
+#include "../minishell.h"
 
 static void	add_myenv(char	*arg, t_env **myenv)
 {
@@ -69,6 +68,31 @@ static void	srch_replace(t_env **menv, int id, char *arg)
 	ft_free_split(constr);
 }
 
+/* 'valable' selon export soit verif ur 1er caracter diff de chiff ou _ puis etre que des chiffre ou des _*/
+static int	is_valable(char	*arg)
+{
+	int	i;
+
+	if (!arg)
+		return (0);
+	i = 0;
+	if ((arg[0] >= 48 && arg[0] <= 57) || arg[0] == 95)
+		return (0);
+	while (arg[i])
+	{
+		if (arg[i] >= 65 && arg[i] <= 90)
+			i++;
+		else if (arg[i] >= 97 && arg[i] <=122)
+			i++;
+		else if (arg[i] >= 48 && arg[i] <= 57)
+			i++;
+		else if (arg[i] == 95)
+			i++;
+		else
+			return (0);
+	}
+	return (1);
+}
 
 int	export_args(t_token *ts, t_env **myev ,int i)
 {
@@ -76,7 +100,7 @@ int	export_args(t_token *ts, t_env **myev ,int i)
 	
 	while (ts->value[i])
 	{
-		if (!(find_c(ts->value[i], '\'')) || !(find_c(ts->value[i], '\"')))
+		if (!(is_valable(ts->value[i])))
 			printf("bash: export: << %s >> : identifant non valable\n",ts->value[i]);
 		else 
 		{

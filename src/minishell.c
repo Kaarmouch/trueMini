@@ -58,6 +58,7 @@ int	main(int ac, char **av, char **ev)
 	rl_catch_signals = 0;
 	redirect_signals();
 	minishell(&bag);
+	free_env((bag->env));
 	free(bag);
 	return (ac);
 }
