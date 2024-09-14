@@ -59,12 +59,19 @@ int	end_tok(char *s)
 int	end_cmd(char *s)
 {
 	int	i;
-
+	int	flag;
+	int	q;
+	
+	flag = 0;
 	i = 0;
 	while (s[i])
 	{
-		if (is_white(s[i]))
+		if (!flag && (q = is_quote(s[i])))
+			flag = q;
+		else if (!flag && is_white(s[i]))
 			return (i);
+		else if (si[i] == flag)
+			return(i+ 1)
 		i++;
 	}
 	return (i);
