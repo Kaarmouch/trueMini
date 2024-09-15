@@ -33,10 +33,16 @@ static int	bt_u(char *l, t_bag **bag)
 }
 static void	clean_tok(t_bag **bag)
 {
-	//remouve quote first ?
-	//get_localv(bag); //change tout les $xx pour 0 si non existant ou par value
+	t_token	*tok;
+
 	printf("Cleaning !!\n");
 	remove_redir(&(*bag)->tokens);
+	tok = (*bag)->tokens;
+	while (tok)
+	{
+		remove_quote(&(tok));
+		tok = tok->next;
+	}
 }
 
 void	printtok(t_token **t)
@@ -64,6 +70,8 @@ void	build_tokens(char *line, t_bag **bag)
 	int	i;
 
 	i = 0;
+	if (!ft_verif_line(line))
+		return ;
 	while (line[i] && i < ft_strlen(line))
 	{
 		while (is_white(line[i]))

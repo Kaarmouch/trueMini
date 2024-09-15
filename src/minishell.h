@@ -43,6 +43,14 @@ typedef struct s_token
 	struct s_token	*next;
 }	t_token;
 
+//lvar
+typedef struct s_local_var
+{
+	char	*key;
+	int		*value;
+	struct	s_local_var	*next;
+}	t_lvar;
+
 //env
 typedef struct s_environement
 {
@@ -57,6 +65,7 @@ typedef struct  s_bag
 {
         struct  s_environement  *env;
         struct  s_token *tokens;
+	struct s_local_var *local_v;
 }       t_bag;
 
 
@@ -83,6 +92,9 @@ int     is_in_ev(char *arg, t_env *myev);
 //cleaning
 void    refresh_tok(t_token **t, char *fic, int type_redir);
 void    remove_redir(t_token **ts);
+void	remove_quote(t_token **t);
+void	dup_no_quote(char *cmd, char *new);
+int	mal_no_quote(char *cmd);
 int     open_file(char *fic_name, int redir);
 int	redir_type(char *cmd);
 char     **redir_realloc(t_token **token);

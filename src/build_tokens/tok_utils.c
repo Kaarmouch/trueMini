@@ -33,24 +33,24 @@ int	type_redir(char *str)
 
 int	end_tok(char *s)
 {
-	int	i;
-	int	flag;
+	int		i;
+	int		flag;
+	char	prev;
 
 	i = 0;
 	if (s[i] == '|')
 		return (1);
+	prev = '\0';
 	flag = 0;
 	while (s[i])
 	{
-		if (!flag)
+		if (!flag && prev != '\\')
 			flag = is_quote(s[i]);
-		if (!flag && s[i] == '|')
+		if (!flag && (s[i] == '|' && prev != '\\'))
 			return (i);
-		if (flag && s[i + 1] == flag)
-		{
+		if (flag && s[i] != '\\' && s[i + 1] == flag)
 			flag = 0;
-			i++;
-		}
+		prev = s[i];
 		i++;
 	}
 	return (i);
@@ -70,8 +70,8 @@ int	end_cmd(char *s)
 			flag = q;
 		else if (!flag && is_white(s[i]))
 			return (i);
-		else if (si[i] == flag)
-			return(i+ 1)
+		else if (s[i] == flag)
+			return (i+ 1);
 		i++;
 	}
 	return (i);

@@ -41,7 +41,11 @@ int	is_in_ev(char *arg, t_env *myev)
 	while (myev)
 	{
 		if (!ft_cmp(myev->key, k))
+		{
+			if (flag >= 0)
+				free(k);
 			return (targ);
+		}
 		targ++;
 		myev = myev->next;
 	}
@@ -69,14 +73,14 @@ static void	srch_replace(t_env **menv, int id, char *arg)
 }
 
 /* 'valable' selon export soit verif ur 1er caracter diff de chiff ou _ puis etre que des chiffre ou des _*/
-static int	is_valable(char	*arg)
+static int	env_valable(char *arg)
 {
 	int	i;
 
 	if (!arg)
 		return (0);
 	i = 0;
-	if ((arg[0] >= 48 && arg[0] <= 57) || arg[0] == 95)
+	if ((arg[0] >= 48 && arg[0] <= 57) || (arg[0] == 95 && !arg[1]))
 		return (0);
 	while (arg[i])
 	{
@@ -100,7 +104,7 @@ int	export_args(t_token *ts, t_env **myev ,int i)
 	
 	while (ts->value[i])
 	{
-		if (!(is_valable(ts->value[i])))
+		if (!(env_valable(ts->value[i])))
 			printf("bash: export: << %s >> : identifant non valable\n",ts->value[i]);
 		else 
 		{

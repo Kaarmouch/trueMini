@@ -25,7 +25,7 @@ static int	minishell(t_bag **bag)
 			clear_history();
 			return(free(line), 0);
 		}
-		if (is_empty_line(line) == 0)
+		if (!is_empty_line(line))
 			add_history(line);
 		(*bag)->tokens = NULL;	//fonction reset_token(bag->tokens) qui free (et pointe vers null)
 		build_tokens(line, bag);
