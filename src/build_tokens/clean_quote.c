@@ -13,7 +13,7 @@ int	have_quote(char *cmd)
         {
                 if (!flag && (prev != '\\' && (flag = is_quote(cmd[i]))))
                         ;
-                else if (flag && (prev != '\\' && is_quote(cmd[i] == flag)))
+                else if (flag && (prev != '\\' && is_quote(cmd[i]) == flag))
                         return (1);
 		prev = cmd[i];
                 i++;
@@ -48,12 +48,16 @@ int	mal_no_quote(char *cmd)
 }
 			
 
-void	dup_no_quote(char *cmd, char *new)
+char	*dup_no_quote(char *cmd)
 {
-	int	i;
-	int	flag;
+	int		i;
+	int		flag;
 	char	prev;
+	char	*new;
 
+	new = malloc(sizeof(char) * mal_no_quote(cmd));
+	if (!new)
+		return (NULL);
 	i = 0;
 	flag = 0;
 	prev = '\0';
@@ -72,6 +76,7 @@ void	dup_no_quote(char *cmd, char *new)
 		cmd++;
 	}
 	new[i] = '\0';
+	return (new);
 }	
 
 
@@ -86,14 +91,13 @@ void	remove_quote(t_token **t)
 	i = 0;
 	while (tmp->value[i])
 	{
+		printf("%s\n",tmp->value[i]);
 		if (!(have_quote(tmp->value[i])))
 			i++;
 		else
 		{
-			new = malloc(sizeof(char) * mal_no_quote(tmp->value[i]));
-			if (!new)
-				return ;
-			dup_no_quote(tmp->value[i], new);
+			new = dup_no_quote(tmp->value[i]);
+			printf("cleaned  %s\n",new);
 			free((*t)->value[i]);
 			(*t)->value[i] = new;
 			i++;

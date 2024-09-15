@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 15:38:59 by aglampor          #+#    #+#             */
-/*   Updated: 2024/09/03 17:22:23 by aglampor         ###   ########.fr       */
+/*   Updated: 2024/09/16 00:40:10 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int     is_in_ev(char *arg, t_env *myev);
 void    refresh_tok(t_token **t, char *fic, int type_redir);
 void    remove_redir(t_token **ts);
 void	remove_quote(t_token **t);
-void	dup_no_quote(char *cmd, char *new);
+char	*dup_no_quote(char *cmd);
 int	mal_no_quote(char *cmd);
 int     open_file(char *fic_name, int redir);
 int	redir_type(char *cmd);

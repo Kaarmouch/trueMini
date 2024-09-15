@@ -6,7 +6,7 @@
 /*   By: aglampor <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 15:48:54 by aglampor          #+#    #+#             */
-/*   Updated: 2024/08/28 15:15:22 by aglampor         ###   ########.fr       */
+/*   Updated: 2024/09/16 01:03:45 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -71,7 +71,7 @@ int	end_cmd(char *s)
 		else if (!flag && is_white(s[i]))
 			return (i);
 		else if (s[i] == flag)
-			return (i+ 1);
+			flag = 0;;
 		i++;
 	}
 	return (i);
