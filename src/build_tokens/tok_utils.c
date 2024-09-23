@@ -6,7 +6,7 @@
 /*   By: aglampor <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 15:48:54 by aglampor          #+#    #+#             */
-/*   Updated: 2024/09/16 01:03:45 by aglampor         ###   ########.fr       */
+/*   Updated: 2024/08/28 15:15:22 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -44,11 +44,11 @@ int	end_tok(char *s)
 	flag = 0;
 	while (s[i])
 	{
-		if (!flag && prev != '\\')
+		if (!flag && (prev != '\\' && is_quote(s[i])))
 			flag = is_quote(s[i]);
-		if (!flag && (s[i] == '|' && prev != '\\'))
+		else if (!flag && (s[i] == '|' && prev != '\\'))
 			return (i);
-		if (flag && s[i] != '\\' && s[i + 1] == flag)
+		else if (flag && prev != '\\' && s[i] == flag)
 			flag = 0;
 		prev = s[i];
 		i++;
@@ -71,7 +71,7 @@ int	end_cmd(char *s)
 		else if (!flag && is_white(s[i]))
 			return (i);
 		else if (s[i] == flag)
-			flag = 0;;
+			return (i+ 1);
 		i++;
 	}
 	return (i);
@@ -95,7 +95,6 @@ void	ft_addb_tok(t_token **p, t_token *new)
 
 int	type_tok(char *s, t_env *env)
 {
-	printf("type_tok\n");
 	if (s[0] == 45)
 		return (OPTION);
 	else if (s[0] == '/')

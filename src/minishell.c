@@ -31,19 +31,10 @@ static int	minishell(t_bag **bag)
 		build_tokens(line, bag);
 		free(line);
 		if ((*bag)->tokens)
-			s_exe((*bag)->tokens, &(*bag)->env);
+			tokens_exe((*bag)->tokens, &(*bag)->env);
 		free_tokens((*bag)->tokens);
 	}
 	clear_history();
-	return (0);
-}
-
-int	s_exe(t_token *t, t_env **menv)
-{
-	if (t->type == BUILTIN || t->type == CMD)
-		return (ex_cmd(t, menv));
-	else
-		write(1, "Reflexion++\n", 12);
 	return (0);
 }
 

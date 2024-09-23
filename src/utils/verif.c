@@ -6,7 +6,7 @@
 /*   By: aglampor <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 19:47:14 by aglampor          #+#    #+#             */
-/*   Updated: 2024/09/16 01:22:55 by aglampor         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:34:46 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -57,14 +57,14 @@ int	is_cmd(char *s, t_env *env)
 		test_path = ft_strjoin_t(paths[i], "/", s);
 		if (access(test_path, F_OK | X_OK) == 0)
 		{
+			free(paths);
 			free(test_path);
-			ft_free_split(paths);
 			return (1);
 		}
 		free(test_path);
 		i++;
 	}
-	ft_free_split(paths);
+	free(paths);
 	return (0);
 }
 

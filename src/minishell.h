@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 15:38:59 by aglampor          #+#    #+#             */
-/*   Updated: 2024/09/16 00:40:10 by aglampor         ###   ########.fr       */
+/*   Updated: 2024/09/03 17:22:23 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int     is_in_ev(char *arg, t_env *myev);
 void    refresh_tok(t_token **t, char *fic, int type_redir);
 void    remove_redir(t_token **ts);
 void	remove_quote(t_token **t);
-char	*dup_no_quote(char *cmd);
+void	dup_no_quote(char *cmd, char *new);
 int	mal_no_quote(char *cmd);
 int     open_file(char *fic_name, int redir);
 int	redir_type(char *cmd);
@@ -128,11 +128,16 @@ void	free_tokens(t_token *p);
 char	*ft_strjoin_t(char *strt, char *mid, char *end);
 void	ft_strcpy(char *str, char *dest);
 
-//minishell
-int     s_exe(t_token *t, t_env **menv);
 
 //exe
-int     ex_cmd(t_token  *ts, t_env **e);
+int     cmd_exe(t_token  *ts, t_env **e);
+int	exe_shell(t_token *t, t_env *menv);
+int	exe_builtin(t_token *ts, t_env **e);
+int	tokens_exe(t_token *t, t_env **menv);
+void	redir (t_token *t, t_env **env);
+char	**get_ex_env(t_env *ev);
+char	*tru_path(char *ex_cmd, t_env *mev);
+char	*test_path(char **l_path, char *cmd);
 
 //split_ws
 char	**splt_white(char *s);

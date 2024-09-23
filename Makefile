@@ -22,7 +22,7 @@ SRC_DIR = src/
 
 SRC_FILES =		env.c\
 			minishell.c\
-			exe.c\
+			exe/exe.c\
 			exit.c\
 			signals.c\
 			builtin/f_export_no_arg.c\

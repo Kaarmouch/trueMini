@@ -76,10 +76,12 @@ static void	srch_replace(t_env **menv, int id, char *arg)
 static int	env_valable(char *arg)
 {
 	int	i;
+	char	prev;
 
 	if (!arg)
 		return (0);
 	i = 0;
+	prev = '\0';
 	if ((arg[0] >= 48 && arg[0] <= 57) || (arg[0] == 95 && !arg[1]))
 		return (0);
 	while (arg[i])
@@ -92,8 +94,11 @@ static int	env_valable(char *arg)
 			i++;
 		else if (arg[i] == 95)
 			i++;
+		else if (prev == '\\' || arg[i] == '\\')
+			i++;
 		else
 			return (0);
+		prev = arg[i];
 	}
 	return (1);
 }
