@@ -11,6 +11,14 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
+static int	token_ctrl(char *line, t_bag **bag)
+{
+		build_tokens(line, bag);
+		pipok(bag);
+		clean_tok(bag);
+		printtok(&(*bag)->tokens);
+		return (0);
+}
 
 static int	minishell(t_bag **bag)
 {
@@ -19,16 +27,15 @@ static int	minishell(t_bag **bag)
 	while (1)
 	{
 		line = readline("MY_minishell : ");
-		if (!line || !ft_cmp("exit", line))
+		if (!line)
 		{
-			write(1, "exit\n", 5);
 			clear_history();
-			return(free(line), 0);
+			return (write(1, "exit\n", 5));
 		}
 		if (!is_empty_line(line))
 			add_history(line);
-		(*bag)->tokens = NULL;	//fonction reset_token(bag->tokens) qui free (et pointe vers null)
-		build_tokens(line, bag);
+		(*bag)->tokens = NULL;
+		token_ctrl(line, bag);
 		free(line);
 		if ((*bag)->tokens)
 			tokens_exe((*bag)->tokens, &(*bag)->env);
@@ -44,7 +51,8 @@ int	main(int ac, char **av, char **ev)
 
 	(void)av;
 	(void)ac;
-	if (!(bag = malloc(sizeof(t_bag))))
+	bag = malloc(sizeof(t_bag));
+	if (!bag)
 		return (1);
 	bag->env = NULL;
 	init_env(&(bag->env), ev);

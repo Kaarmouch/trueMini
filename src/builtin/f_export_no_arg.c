@@ -16,13 +16,13 @@ static int	is_in(int idx, int *tri)
 	int	i;
 
 	i = 0;
-	while (tri[i] != -1) 
-	{ 
+	while (tri[i] != -1)
+	{
 		if (tri[i] == idx)
-			return 1;
+			return (1);
 		i++;
 	}
-	return 0;
+	return (0);
 }
 
 static void	add_croiss(t_env *e, int *tri)
@@ -38,7 +38,8 @@ static void	add_croiss(t_env *e, int *tri)
 		compare = min->next;
 		while (compare)
 		{
-			if (!(is_in(compare->index, tri)) && ft_cmp(min->key, compare->key) > 0)
+			if (!(is_in(compare->index, tri))
+				&& ft_cmp(min->key, compare->key) > 0)
 				min = compare;
 			compare = compare->next;
 		}
@@ -50,18 +51,18 @@ static void	add_croiss(t_env *e, int *tri)
 	}
 }
 
-static int      w_export(t_env *myenv)
+static int	w_export(t_env *myenv)
 {
-        write(1, "declare -x ", 11);
-        write(1 ,myenv->key, ft_strlen(myenv->key));
-        if (myenv->value[0] != '\0')
+	write(1, "declare -x ", 11);
+	write(1, myenv->key, ft_strlen(myenv->key));
+	if (myenv->value[0] != '\0')
 	{
-		write(1 , "=\"", 2);
-                write(1 ,myenv->value, ft_strlen(myenv->value));
-		write(1 , "\"", 1);
+		write(1, "=\"", 2);
+		write(1, myenv->value, ft_strlen(myenv->value));
+		write(1, "\"", 1);
 	}
-        write(1, "\n", 1);
-        return (0);
+	write(1, "\n", 1);
+	return (0);
 }
 
 static void	write_croiss(t_env *e, int *order)

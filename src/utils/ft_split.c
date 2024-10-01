@@ -28,7 +28,7 @@ void	ft_free_split(char **split)
 
 	i = 0;
 	if (!split)
-		return;
+		return ;
 	while (split[i])
 	{
 		free(split[i]);

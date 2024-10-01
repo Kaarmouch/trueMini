@@ -15,10 +15,10 @@
 void	free_env(t_env	*p)
 {
 	t_env	*next;
-	
+
 	while (p)
-	{	
-		next = p->next; 
+	{
+		next = p->next;
 		free(p->key);
 		if (p->value)
 			free(p->value);
@@ -26,7 +26,7 @@ void	free_env(t_env	*p)
 		p = next;
 	}
 }
-	
+
 char	**constructor(char *s)
 {
 	char	**build;
@@ -39,7 +39,6 @@ char	**constructor(char *s)
 	build[2] = 0;
 	return (build);
 }
-
 
 void	init_env(t_env **env, char **ev)
 {

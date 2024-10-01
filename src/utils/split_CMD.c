@@ -9,8 +9,22 @@
 /*   Updated: 2024/08/28 14:43:40 by aglampor         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "../minishell.h"
+
+int     nb_token(t_token *tok)
+{
+        int             cnt;
+        t_token *tmp;
+
+        tmp = tok;
+        cnt = 0;
+        while(tmp)
+        {
+                cnt++;
+                tmp = tmp->next;
+        }
+        return (cnt);
+}
 
 static int	count_wrd_input(char *str)
 {
@@ -24,7 +38,7 @@ static int	count_wrd_input(char *str)
 		while (is_white((str[i])))
 			i++;
 		if (str[i])
-		{	
+		{
 			words++;
 			i += end_cmd(&str[i]);
 		}
@@ -32,13 +46,12 @@ static int	count_wrd_input(char *str)
 	return (words);
 }
 
-
 static void	cmd_split(char **arr, char *str)
 {
 	int	i_arr;
 	int	i_char;
-	int	end_CMD;
-	
+	int	end_comd;
+
 	i_arr = 0;
 	i_char = 0;
 	while (arr)
@@ -46,30 +59,28 @@ static void	cmd_split(char **arr, char *str)
 		while (is_white(str[i_char]))
 			i_char++;
 		if (str[i_char] == '\0')
-			break;
-		end_CMD = end_cmd(&str[i_char]);
-		arr[i_arr] = word_dup(&str[i_char], 0, end_CMD);
+			break ;
+		end_comd = end_cmd(&str[i_char]);
+		arr[i_arr] = word_dup(&str[i_char], 0, end_comd);
 		i_arr++;
-		i_char += end_CMD;
+		i_char += end_comd;
 	}
 }
 
-
 char	**split_input(char *str)
 {
-        char            **arr;
-        int                     words;
+	char	**arr;
+	int		words;
 
-        words = count_wrd_input(str);
-        arr = malloc(sizeof(char *) * (words + 1));
-        if (!arr)
-                return (0);
-        arr[words] = 0;
-        cmd_split(arr ,str);
+	words = count_wrd_input(str);
+	arr = malloc(sizeof(char *) * (words + 1));
+	if (!arr)
+		return (0);
+	arr[words] = 0;
+	cmd_split(arr, str);
 	free(str);
-        return (arr);
+	return (arr);
 }
-
 
 // problem si on envoie '\0' en input le split il casse
 // je sais pas si je le regle (surtout comemnt le regler)

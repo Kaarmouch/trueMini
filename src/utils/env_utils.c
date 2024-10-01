@@ -15,7 +15,7 @@
 void	ft_lstadd_back(t_env **lst, t_env *new)
 {
 	t_env	*e;
-	
+
 	if (!new)
 		return ;
 	if (!*lst)
@@ -54,7 +54,6 @@ t_env	*ft_lstlast(t_env *lst)
 	return (temp);
 }
 
-
 void	ft_indexion(t_env *list)
 {
 	int	i;
@@ -72,7 +71,7 @@ void	ft_delnode_idx(t_env **lst, int idx)
 {
 	t_env	*temp;
 	t_env	*flag;
-	int	i;
+	int		i;
 
 	i = 0;
 	if (lst == NULL || *lst == NULL)

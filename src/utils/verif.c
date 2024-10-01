@@ -14,9 +14,8 @@
 int	ft_verif_line(char *line)
 {
 	char	prev;
-	int	i;
-	int	flag;
-
+	int		i;
+	int		flag;
 
 	if (is_empty_line(line) == 1)
 		return (0);
@@ -27,7 +26,7 @@ int	ft_verif_line(char *line)
 	{
 		if (!flag && (prev != '\\' && is_quote(line[i])))
 			flag = is_quote(line[i]);
-		else if (flag && ((is_quote(line[i])== flag && prev != '\\')))
+		else if (flag && ((is_quote(line[i]) == flag && prev != '\\')))
 			flag = 0;
 		prev = line[i];
 		i++;

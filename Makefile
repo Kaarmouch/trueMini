@@ -22,7 +22,7 @@ SRC_DIR = src/
 
 SRC_FILES =		env.c\
 			minishell.c\
-			exe/exe.c\
+			execute.c\
 			exit.c\
 			signals.c\
 			builtin/f_export_no_arg.c\
@@ -30,13 +30,16 @@ SRC_FILES =		env.c\
 			builtin/f_buildin.c\
 			build_tokens/tok_utils.c\
 			build_tokens/clean_quote.c\
+			build_tokens/clean_pip.c\
 			build_tokens/clean_redir.c\
 			build_tokens/redir_realoc.c\
 			build_tokens/tokens.c\
 			utils/split_CMD.c\
 			utils/env_utils.c\
-			utils/utils.c\
 			utils/ft_split.c\
+			utils/exe_utils.c\
+			utils/utils.c\
+			utils/pipe_utils.c\
 			utils/split_ws.c\
 			utils/verif.c\
 			utils/triple_join.c

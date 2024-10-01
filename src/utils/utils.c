@@ -13,9 +13,9 @@
 
 int	find_c(char *str, char c)
 {
-	int	i;
+	int		i;
 	char	prev;
-	
+
 	i = 0;
 	prev = '\0';
 	while (str[i])

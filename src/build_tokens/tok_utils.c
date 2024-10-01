@@ -11,24 +11,18 @@
 /* ************************************************************************** */
 #include "../minishell.h"
 
-void    free_tokens(t_token  *p)
+void	free_tokens(t_token *p)
 {
-        t_token   *tmp;
+	t_token	*tmp;
 
-        while (p)
-        {
-                tmp = p->next;
+	while (p)
+	{
+		tmp = p->next;
 		if (p->value)
 			ft_free_split(p->value);
-                free(p);
-                p = tmp;
-        }
-}
-
-int	type_redir(char *str)
-{
-	printf("ft_cmp et diff resultat\n");
-	return (str[0]);
+		free(p);
+		p = tmp;
+	}
 }
 
 int	end_tok(char *s)
@@ -60,23 +54,21 @@ int	end_cmd(char *s)
 {
 	int	i;
 	int	flag;
-	int	q;
-	
+
 	flag = 0;
 	i = 0;
 	while (s[i])
 	{
-		if (!flag && (q = is_quote(s[i])))
-			flag = q;
+		if (!flag && (is_quote(s[i])))
+			flag = is_quote(s[i]);
 		else if (!flag && is_white(s[i]))
 			return (i);
 		else if (s[i] == flag)
-			return (i+ 1);
+			return (i + 1);
 		i++;
 	}
 	return (i);
 }
-
 
 void	ft_addb_tok(t_token **p, t_token *new)
 {
@@ -103,6 +95,7 @@ int	type_tok(char *s, t_env *env)
 		return (BUILTIN);
 	else if (is_cmd(s, env))
 		return (CMD);
+	else if (!ft_cmp(s, "|"))
+		return (PIPE);
 	return (0);
 }
-

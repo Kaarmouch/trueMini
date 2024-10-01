@@ -31,11 +31,13 @@ static int	bt_u(char *l, t_bag **bag)
 	ft_addb_tok(&((*bag)->tokens), new);
 	return (j);
 }
-static void	clean_tok(t_bag **bag)
+
+void	clean_tok(t_bag **bag)
 {
 	t_token	*tok;
 
 	printf("Cleaning !!\n");
+	cleanpip(&(*bag)->tokens);
 	remove_redir(&(*bag)->tokens);
 	tok = (*bag)->tokens;
 	while (tok)
@@ -48,7 +50,7 @@ static void	clean_tok(t_bag **bag)
 void	printtok(t_token **t)
 {
 	t_token	*tmp;
-	int	i;
+	int		i;
 
 	tmp = *t;
 	while (tmp)
@@ -60,7 +62,7 @@ void	printtok(t_token **t)
 			printf("value %s\n", tmp->value[i]);
 			i++;
 		}
-		printf("type %d\n",tmp->type);
+		printf("type %d\n", tmp->type);
 		tmp = tmp->next;
 	}
 }
@@ -73,12 +75,10 @@ void	build_tokens(char *line, t_bag **bag)
 	if (!ft_verif_line(line))
 		return ;
 	while (line[i] && i < ft_strlen(line))
-	{
+	{	
 		while (is_white(line[i]))
 			i++;
 		if (line[i])
 			i += bt_u(&line[i], bag);
 	}
-	clean_tok(bag);
-	printtok(&(*bag)->tokens);
 }

@@ -14,7 +14,7 @@
 
 char	*test_path(char **l_path, char *cmd)
 {
-	int	i;
+	int		i;
 	char	*test_path;
 
 	i = 0;
@@ -24,13 +24,11 @@ char	*test_path(char **l_path, char *cmd)
 		if (access(test_path, F_OK | X_OK) == 0)
 		{
 			ft_free_split(l_path);
-			free(cmd);
 			return (test_path);
 		}
 		free(test_path);
 		i++;
 	}
-	free(cmd);
 	ft_free_split(l_path);
 	return (0);
 }
@@ -49,7 +47,6 @@ char	*tru_path(char *ex_cmd, t_env *mev)
 	return (path);
 }
 
-
 char	**get_ex_env(t_env *ev)
 {
 	t_env	*tmp;
@@ -57,7 +54,7 @@ char	**get_ex_env(t_env *ev)
 	int		i;
 
 	tmp = ev;
-	ex_ev = malloc(sizeof(char*) * (ft_lstlast(tmp))->index + 2);
+	ex_ev = malloc(sizeof(char *) * ((ft_lstlast(tmp))->index + 2));
 	if (!ex_ev)
 		return (NULL);
 	i = 0;
@@ -67,6 +64,6 @@ char	**get_ex_env(t_env *ev)
 		i++;
 		tmp = tmp->next;
 	}
-	ex_ev[i] = 0;
+	ex_ev[i] = NULL;
 	return (ex_ev);
 }
