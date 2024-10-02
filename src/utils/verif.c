@@ -56,14 +56,14 @@ int	is_cmd(char *s, t_env *env)
 		test_path = ft_strjoin_t(paths[i], "/", s);
 		if (access(test_path, F_OK | X_OK) == 0)
 		{
-			free(paths);
+			ft_free_split(paths);
 			free(test_path);
 			return (1);
 		}
 		free(test_path);
 		i++;
 	}
-	free(paths);
+	ft_free_split(paths);
 	return (0);
 }
 

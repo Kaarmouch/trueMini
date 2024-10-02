@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exe.c                                              :+:      :+:    :+:   */
+/*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aglampor <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -42,7 +42,7 @@ int	tokens_exe(t_token *t, t_env **env)
 	pipefd = build_pipe(nb_tok);
 	while (t)
 	{
-		if(!i && !ft_cmp(t->value[0], "export"))
+		if(!t->next && !ft_cmp(t->value[0], "export"))
 			exe_builtin(t, env);
 		pid = fork();
 		if (pid == -1)
@@ -72,12 +72,16 @@ int	exe_shell(t_token *t, t_env *menv)
 		if (!(access(t->value[0], F_OK | X_OK)))
 			t_path = t->value[0];
 		else
+		{
+			ft_free_split(exe_env);
 			return (1);
+		}
 	}
 	else
 		t_path = tru_path(t->value[0], menv);
 	if (t_path)
 		execve(t_path, t->value, exe_env);
+	ft_free_split(exe_env);
 	return (0);
 }
 

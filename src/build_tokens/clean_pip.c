@@ -33,6 +33,7 @@ void	pipok(t_bag **bag)
 	{
 		n_line = readline("> ");
 		build_tokens(n_line, bag);
+		free(n_line);
 		pipok(bag);
 	}
 }
