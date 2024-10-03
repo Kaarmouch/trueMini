@@ -39,11 +39,11 @@ int	tokens_exe(t_token *t, t_env **env)
 
 	nb_tok = nb_token(t);
 	i = 0;
+	if(!t->next && t->type == BUILTIN)
+			return (exe_builtin(t, env));
 	pipefd = build_pipe(nb_tok);
 	while (t)
 	{
-		if(!t->next && !ft_cmp(t->value[0], "export"))
-			exe_builtin(t, env);
 		pid = fork();
 		if (pid == -1)
 			return (1);

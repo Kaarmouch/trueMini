@@ -30,7 +30,8 @@ static int	count_wrd_input(char *str)
 {
 	int	i;
 	int	words;
-
+	if (!str)
+		return (0);
 	i = 0;
 	words = 0;
 	while (str[i])
@@ -71,14 +72,17 @@ char	**split_input(char *str)
 {
 	char	**arr;
 	int		words;
-
+	
 	words = count_wrd_input(str);
+	printf("%s, nb wrd nw token %i",str, words);
 	arr = malloc(sizeof(char *) * (words + 1));
 	if (!arr)
 		return (0);
 	arr[words] = 0;
 	cmd_split(arr, str);
 	free(str);
+	if (arr[0] == 0)
+		free(arr);
 	return (arr);
 }
 

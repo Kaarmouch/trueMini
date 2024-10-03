@@ -11,15 +11,16 @@
 /* ************************************************************************** */
 #include "../minishell.h"
 
-void	pipok(t_bag **bag)
+int	pipok(t_bag **bag)
 {
 	int		flag;
 	int		i;
-	char	*n_line;
 	t_token	*t;
 
 	i = 0;
 	t = (*bag)->tokens;
+	if (!t)
+		return (1);
 	while (t)
 	{
 		if ((i % 2) && t->type == PIPE )
@@ -30,12 +31,9 @@ void	pipok(t_bag **bag)
 		i++;
 	}
 	if (!flag)
-	{
-		n_line = readline("> ");
-		build_tokens(n_line, bag);
-		free(n_line);
-		pipok(bag);
-	}
+		return (0);
+	return (1);
+
 }
 
 void	cleanpip(t_token **t)

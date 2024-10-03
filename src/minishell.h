@@ -90,7 +90,7 @@ int		export_args(t_token *ts, t_env **myev, int i);
 int		is_in_ev(char *arg, t_env *myev);
 
 //clean_pipe
-void	pipok(t_bag **bag);
+int	pipok(t_bag **bag);
 void	cleanpip(t_token **t);
 
 
