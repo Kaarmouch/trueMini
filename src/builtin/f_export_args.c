@@ -42,7 +42,6 @@ int	is_in_ev(char *arg, t_env *myev)
 	{
 		if (!ft_cmp(myev->key, k))
 		{
-			printf("is_in_ev !! k = %s\n",k);
 			free(k);
 			return (targ);
 		}
@@ -60,7 +59,6 @@ static void	srch_replace(t_env **menv, int id, char *arg)
 
 	if ((find_c(arg, '=')) == -1)
 		return ;
-	printf("on remplace\n");
 	constr = constructor(arg);
 	tmp = (*menv);
 	while (tmp->index != id)
@@ -100,18 +98,7 @@ static int	env_valable(char *arg)
 	}
 	return (1);
 }
-/*
-static void print_env(t_env *env)
-{
-    while (env)
-    {
-        printf("Key: %s, Value: %s\n", env->key, env->value);
-        env = env->next;
-    }
-    printf("--------\n");
-}
 
-*/
 int	export_args(t_token *ts, t_env **myev, int i)
 {
 	int	id_targ;
@@ -127,7 +114,6 @@ int	export_args(t_token *ts, t_env **myev, int i)
 				srch_replace(myev, id_targ, ts->value[i]);
 			else
 				add_myenv(ts->value[i], myev);
-			//print_env(*myev);
 		}
 		i++;
 	}

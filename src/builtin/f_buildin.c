@@ -52,7 +52,7 @@ int	ft_unset(char **cmds, t_env **menv)
 	while (cmds[i])
 	{
 		id_targ = is_in_ev(cmds[i], (*menv));
-		if (id_targ != -1)
+		if (ft_cmp("_", cmds[i]) != 0 && id_targ != -1)
 			ft_delnode_idx(menv, id_targ);
 		else
 			i++;

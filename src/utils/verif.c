@@ -39,32 +39,40 @@ int	ft_verif_line(char *line)
 	return (1);
 }
 
+static int      test_cmd(char **paths, char *s)
+{
+        int     i;
+        char    *test_path;
+
+        i = 0;
+        while (paths[i])
+        {
+                test_path = ft_strjoin_t(paths[i], "/", s);
+                if (access(test_path, F_OK | X_OK) == 0)
+                {
+                        ft_free_split(paths);
+                        free(test_path);
+                        return (1);
+                }
+                free(test_path);
+                i++;
+        }
+        ft_free_split(paths);
+        return (0);
+}
+
 int	is_cmd(char *s, t_env *env)
 {
 	t_env	*path;
-	int		i;
 	char	**paths;
-	char	*test_path;
 
 	path = env;
-	i = 0;
-	while (ft_cmp("PATH", path->key) != 0)
+	while (path && ft_cmp("PATH", path->key) != 0)
 		path = path->next;
+	if (!path)
+		return (0);
 	paths = ft_split(path->value, ':');
-	while (paths[i])
-	{
-		test_path = ft_strjoin_t(paths[i], "/", s);
-		if (access(test_path, F_OK | X_OK) == 0)
-		{
-			ft_free_split(paths);
-			free(test_path);
-			return (1);
-		}
-		free(test_path);
-		i++;
-	}
-	ft_free_split(paths);
-	return (0);
+	return (test_cmd(paths, s));
 }
 
 int	is_builtin(char *s)
