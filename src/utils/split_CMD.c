@@ -74,7 +74,6 @@ char	**split_input(char *str)
 	int		words;
 	
 	words = count_wrd_input(str);
-	printf("%s, nb wrd nw token %i",str, words);
 	arr = malloc(sizeof(char *) * (words + 1));
 	if (!arr)
 		return (0);

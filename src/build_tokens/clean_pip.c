@@ -11,6 +11,47 @@
 /* ************************************************************************** */
 #include "../minishell.h"
 
+static int	isredir_ok(t_token *t)
+{
+	int	i;
+	
+	if (!t)
+		return (0);
+	i = 0;
+	while (t->value[i])
+	{
+		if (redir_type(t->value[i]))
+		{
+			if (!owr(t->value[i]) && !(t->value[i + 1]))
+			{
+				print_err(t->value[i]);
+				return (0);
+			}
+		}
+		i++;
+	}
+	return (1);
+}
+
+int	is_ok(t_bag **bag)
+{
+	t_token	*t;
+
+	if (!pipok(bag))
+	{
+		return (0);
+	}
+	t = (*bag)->tokens;
+	while (t)
+	{
+		if (!(isredir_ok(t)))
+			return (0);
+		t = t->next;
+	}
+	return (1);
+}
+	
+
 int	pipok(t_bag **bag)
 {
 	int		flag;
@@ -20,7 +61,7 @@ int	pipok(t_bag **bag)
 	i = 0;
 	t = (*bag)->tokens;
 	if (!t)
-		return (1);
+		return (0);
 	while (t)
 	{
 		if ((i % 2) && t->type == PIPE )
@@ -31,7 +72,10 @@ int	pipok(t_bag **bag)
 		i++;
 	}
 	if (!flag)
+	{
+		print_err("|");
 		return (0);
+	}
 	return (1);
 
 }

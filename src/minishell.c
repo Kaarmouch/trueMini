@@ -15,16 +15,12 @@ static int	token_ctrl(char *line, t_bag **bag)
 {
 	build_tokens(line, bag);
 	free(line);
-	while (!(pipok(bag)))
-	{
-		line = readline("> ");
-		build_tokens(line, bag);
-		free(line);
-	}
+	if (!is_ok(bag))
+		return (0);
 	clean_tok(bag);
-	//printtok(&(*bag)->tokens);
-	return (0);
+	return (1);
 }
+
 
 static int	minishell(t_bag **bag)
 {
@@ -41,8 +37,7 @@ static int	minishell(t_bag **bag)
 		if (!is_empty_line(line))
 			add_history(line);
 		(*bag)->tokens = NULL;
-		token_ctrl(line, bag);
-		if ((*bag)->tokens)
+		if (token_ctrl(line, bag))
 			tokens_exe((*bag)->tokens, &(*bag)->env);
 		free_tokens((*bag)->tokens);
 	}

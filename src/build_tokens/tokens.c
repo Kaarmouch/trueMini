@@ -23,7 +23,6 @@ static int	bt_u(char *l, t_bag **bag)
 		return (-1);
 	j = end_tok(l);
 	l_child = word_dup(l, 0, j);
-	printf("the new token add %s\n",l_child);
 	new->value = split_input(l_child);
 	new->type = type_tok(new->value[0], (*bag)->env);
 	new->next = 0;
@@ -37,7 +36,6 @@ void	clean_tok(t_bag **bag)
 {
 	t_token	*tok;
 
-	printf("Cleaning !!\n");
 	cleanpip(&(*bag)->tokens);
 	remove_redir(&(*bag)->tokens);
 	tok = (*bag)->tokens;

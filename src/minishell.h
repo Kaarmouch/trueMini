@@ -93,6 +93,7 @@ int		is_in_ev(char *arg, t_env *myev);
 int	pipok(t_bag **bag);
 void	cleanpip(t_token **t);
 
+int     is_ok(t_bag **bag);
 
 //clean_quote
 int		have_quote(char *cmd);
@@ -180,7 +181,7 @@ int		is_redir(char *s);
 void	sigquit_handler(int signal);
 void	sigint_handler(int signal);
 void	redirect_signals(void);
-
+void	print_err(char *t);
 //pwd
 void	ft_putstr(char *str);
 void	set_pwd(t_env *env);
